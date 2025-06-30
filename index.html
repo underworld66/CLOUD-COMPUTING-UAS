@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Hospital - Layanan Kesehatan Terpercaya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2.5rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Ticketing Section */
+        .ticketing {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticketing h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2.5rem;
+        }
+
+        .ticket-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ticket Display */
+        .ticket-display {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .ticket {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ticket::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .ticket-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-info {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Kevin Hospital</div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#ticketing">Antrian</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home" class="hero">
+            <h1>Selamat Datang di Kevin Hospital</h1>
+            <p>Layanan kesehatan terpercaya dengan teknologi modern dan tenaga medis profesional</p>
+            <a href="#ticketing" class="cta-button">Ambil Nomor Antrian</a>
+        </section>
+
+        <section id="services" class="services">
+            <h2>Layanan Kami</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Poli Umum</h3>
+                    <p>Pemeriksaan kesehatan umum dengan dokter berpengalaman</p>
+                </div>
+                <div class="service-card">
+                    <h3>Poli Gigi</h3>
+                    <p>Perawatan gigi dan mulut yang komprehensif</p>
+                </div>
+                <div class="service-card">
+                    <h3>Poli Mata</h3>
+                    <p>Pemeriksaan dan perawatan kesehatan mata</p>
+                </div>
+                <div class="service-card">
+                    <h3>Poli Anak</h3>
+                    <p>Pelayanan kesehatan khusus untuk anak-anak</p>
+                </div>
+                <div class="service-card">
+                    <h3>Laboratorium</h3>
+                    <p>Pemeriksaan laboratorium dengan teknologi canggih</p>
+                </div>
+                <div class="service-card">
+                    <h3>Radiologi</h3>
+                    <p>Pemeriksaan radiologi dan medical imaging</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ticketing" class="ticketing">
+            <h2>Sistem Antrian Online</h2>
+            <div class="ticket-form">
+                <form id="ticketForm">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Pilih Layanan</label>
+                        <select id="service" name="service" required>
+                            <option value="">Pilih Layanan</option>
+                            <option value="umum">Poli Umum</option>
+                            <option value="gigi">Poli Gigi</option>
+                            <option value="mata">Poli Mata</option>
+                            <option value="anak">Poli Anak</option>
+                            <option value="lab">Laboratorium</option>
+                            <option value="radiologi">Radiologi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Tanggal Kunjungan</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Waktu Kunjungan</label>
+                        <select id="time" name="time" required>
+                            <option value="">Pilih Waktu</option>
+                            <option value="08:00">08:00 - 09:00</option>
+                            <option value="09:00">09:00 - 10:00</option>
+                            <option value="10:00">10:00 - 11:00</option>
+                            <option value="11:00">11:00 - 12:00</option>
+                            <option value="13:00">13:00 - 14:00</option>
+                            <option value="14:00">14:00 - 15:00</option>
+                            <option value="15:00">15:00 - 16:00</option>
+                            <option value="16:00">16:00 - 17:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaint">Keluhan (Opsional)</label>
+                        <textarea id="complaint" name="complaint" rows="3" placeholder="Jelaskan keluhan Anda..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Ambil Nomor Antrian</button>
+                </form>
+            </div>
+
+            <div class="ticket-display" id="ticketDisplay">
+                <div class="ticket">
+                    <div class="ticket-number" id="ticketNumber">A001</div>
+                    <div class="ticket-info">Nomor Antrian Anda</div>
+                    <div class="ticket-info" id="ticketName">Nama: -</div>
+                    <div class="ticket-info" id="ticketService">Layanan: -</div>
+                    <div class="ticket-info" id="ticketDateTime">Tanggal & Waktu: -</div>
+                    <div class="ticket-info">Silakan datang 15 menit sebelum waktu yang ditentukan</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kevin Hospital. Semua hak dilindungi undang-undang.</p>
+            <p>Jl. Kesehatan No. 123, Jakarta | Telp: (021) 1234-5678 | Email: info@kevinhospital.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Ticket counter
+        let ticketCounter = {
+            umum: 1,
+            gigi: 1,
+            mata: 1,
+            anak: 1,
+            lab: 1,
+            radiologi: 1
+        };
+
+        // Service prefixes
+        const servicePrefixes = {
+            umum: 'A',
+            gigi: 'B',
+            mata: 'C',
+            anak: 'D',
+            lab: 'E',
+            radiologi: 'F'
+        };
+
+        // Service names
+        const serviceNames = {
+            umum: 'Poli Umum',
+            gigi: 'Poli Gigi',
+            mata: 'Poli Mata',
+            anak: 'Poli Anak',
+            lab: 'Laboratorium',
+            radiologi: 'Radiologi'
+        };
+
+        // Form submission
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const service = formData.get('service');
+            const date = formData.get('date');
+            const time = formData.get('time');
+            const complaint = formData.get('complaint');
+
+            // Generate ticket number
+            const prefix = servicePrefixes[service];
+            const number = ticketCounter[service].toString().padStart(3, '0');
+            const ticketNumber = prefix + number;
+
+            // Update counter
+            ticketCounter[service]++;
+
+            // Format date
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Display ticket
+            document.getElementById('ticketNumber').textContent = ticketNumber;
+            document.getElementById('ticketName').textContent = `Nama: ${name}`;
+            document.getElementById('ticketService').textContent = `Layanan: ${serviceNames[service]}`;
+            document.getElementById('ticketDateTime').textContent = `${formattedDate}, ${time}`;
+            
+            document.getElementById('ticketDisplay').style.display = 'block';
+            document.getElementById('ticketDisplay').scrollIntoView({ behavior: 'smooth' });
+
+            // Reset form
+            this.reset();
+
+            // Show success message
+            alert(`Nomor antrian Anda: ${ticketNumber}\nSilakan screenshot tiket ini sebagai bukti.`);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
